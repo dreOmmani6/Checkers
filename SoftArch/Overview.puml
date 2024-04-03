@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Game{
+Board board
+Players players
+
+Player getPlayerOne()
+void setUpBoard()
+}
+
+Game *-- Player
+Game *-- Board
+
+class Player{
+Colour colour
+}
+
+class Pieces{
+Position position
+List<Move> moves
+Colour colour
+}
+Pieces <|-- King
+Pieces <|-- Normal
+
+class King{}
+class Normal{}
+
+Pieces o-- Move
+Pieces *-- Colour
+
+class Move{
+Position from
+Position To
+boolean isAllowed
+}
+Move o-- Position
+
+class Board{
+List<Pieces> pieces
+Position [][] tiles
+}
+Board *-- Pieces
+Board *-- Position
+
+
+class Position{
+Colour colour;
+
+}
+Position *-- Colour
+
+class Colour
+class Contoller
+class Timer
+
+@enduml
