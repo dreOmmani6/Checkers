@@ -1,4 +1,4 @@
-package org.example;
+package com.ommani.Checkers;
 
 public class Main {
     public static void main(String[] args) {
