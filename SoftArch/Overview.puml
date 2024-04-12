@@ -16,32 +16,32 @@ class Player{
 Colour colour
 }
 
-class Pieces{
+class Piece{
 Position position
 List<Move> moves
 Colour colour
 }
-Pieces <|-- King
-Pieces <|-- Normal
+Piece <|-- King
+Piece <|-- Pawn
 
 class King{}
-class Normal{}
+class Pawn{}
 
-Pieces o-- Move
-Pieces *-- Colour
+Piece o-- Move
+Piece *-- Colour
 
-class Move{
+abstract class Move{
 Position from
 Position To
-boolean isAllowed
+Move nextMove
 }
 Move o-- Position
 
 class Board{
-List<Pieces> pieces
+List<Piece> pieces
 Position [][] tiles
 }
-Board *-- Pieces
+Board *-- Piece
 Board *-- Position
 
 
