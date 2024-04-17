@@ -14,12 +14,10 @@ class CaptureMove {
   ~ updateRewardPoints(): void
    nextMove: Move
 }
-class ConsoleView {
-  + display(): void
-  + update(): void
-}
 class Game {
+  - playerTurn: int
   + getTile(int, int): String
+   playerTurn: int
 }
 class King {
   + toString(): String
@@ -36,7 +34,7 @@ class Move {
    to: Tile
 }
 class Observable {
-  - alert(): void
+  # alert(): void
   + unsubscribe(Observer): void
   + subscribe(Observer): void
 }
@@ -52,12 +50,22 @@ class Piece {
 }
 class Player {
   - colour: Colour
+  - pieces: int
   - name: String
-   colour: Colour
+  + joinGame(Game, Console): void
    name: String
+   colour: Colour
+   pieces: int
+   gameOver: boolean
 }
 class PromotionMove
 class SimpleMove
+class TerminalView {
+  + moveToTile(): boolean
+  + update(): void
+  + selectPiece(): boolean
+  + display(): void
+}
 class Tile {
   - piece: Piece
   - colour: Colour
@@ -70,15 +78,15 @@ class node14 as "package  com.ommani.checkers.utility" << package >>
 Board         "1" *-[#595959,plain]-> "tiles\n*" Tile          
 CaptureMove    -[#000082,plain]-^  Move          
 CaptureMove   "1" *-[#595959,plain]-> "nextMove\n1" Move          
-ConsoleView   "1" *-[#595959,plain]-> "game\n1" Game          
-ConsoleView    -[#008200,dashed]-^  Observer      
 Game          "1" *-[#595959,plain]-> "board\n1" Board         
 Game           -[#000082,plain]-^  Observable    
-Game          "1" *-[#595959,plain]-> "players\n*" Player        
 King           -[#000082,plain]-^  Piece         
 Move          "1" *-[#595959,plain]-> "from\n1" Tile          
 Observable    "1" *-[#595959,plain]-> "observerList\n*" Observer      
+Player        "1" *-[#595959,plain]-> "playerConsole\n1" Observer      
 PromotionMove  -[#000082,plain]-^  Move          
 SimpleMove     -[#000082,plain]-^  Move          
+TerminalView  "1" *-[#595959,plain]-> "game\n1" Game          
+TerminalView   -[#008200,dashed]-^  Observer      
 Tile          "1" *-[#595959,plain]-> "piece\n1" Piece         
 @enduml
