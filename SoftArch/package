@@ -1,0 +1,84 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Board {
+  - tiles: Tile[][]
+  + initBoard(): void
+   tiles: Tile[][]
+}
+class CaptureMove {
+  # nextMove: Move
+  ~ updateRewardPoints(): void
+   nextMove: Move
+}
+class ConsoleView {
+  + display(): void
+  + update(): void
+}
+class Game {
+  + getTile(int, int): String
+}
+class King {
+  + toString(): String
+}
+class Main {
+  + main(String[]): void
+}
+class Move {
+  # from: Tile
+  # to: Tile
+  # rewardPoints: int
+   rewardPoints: int
+   from: Tile
+   to: Tile
+}
+class Observable {
+  - alert(): void
+  + unsubscribe(Observer): void
+  + subscribe(Observer): void
+}
+interface Observer << interface >> {
+  + update(): void
+  + display(): void
+}
+class Piece {
+  # colour: Colour
+  # getMoveType(Tile, Tile): void
+  + toString(): String
+   colour: Colour
+}
+class Player {
+  - colour: Colour
+  - name: String
+   colour: Colour
+   name: String
+}
+class PromotionMove
+class SimpleMove
+class Tile {
+  - piece: Piece
+  - colour: Colour
+  + toString(): String
+   colour: Colour
+   piece: Piece
+}
+class node14 as "package  com.ommani.checkers.utility" << package >>
+
+Board         "1" *-[#595959,plain]-> "tiles\n*" Tile          
+CaptureMove    -[#000082,plain]-^  Move          
+CaptureMove   "1" *-[#595959,plain]-> "nextMove\n1" Move          
+ConsoleView   "1" *-[#595959,plain]-> "game\n1" Game          
+ConsoleView    -[#008200,dashed]-^  Observer      
+Game          "1" *-[#595959,plain]-> "board\n1" Board         
+Game           -[#000082,plain]-^  Observable    
+Game          "1" *-[#595959,plain]-> "players\n*" Player        
+King           -[#000082,plain]-^  Piece         
+Move          "1" *-[#595959,plain]-> "from\n1" Tile          
+Observable    "1" *-[#595959,plain]-> "observerList\n*" Observer      
+PromotionMove  -[#000082,plain]-^  Move          
+SimpleMove     -[#000082,plain]-^  Move          
+Tile          "1" *-[#595959,plain]-> "piece\n1" Piece         
+@enduml
